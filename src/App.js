@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Route, Router, Switch } from "react-router";
+import SiderBar from "./components/SiderBar/Siderbar";
+import { createBrowserHistory } from 'history';
+import LoginTemplate from "./template/LoginTemplate/LoginTemplate";
+import UserLogin from "./pages/UserLogin/UserLogin";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
+import Loading from "./components/Loading/Loading";
+
+
+export const history = createBrowserHistory()
 
 function App() {
+
+
+  const renderRouter = (routes, Layout) => {
+    return routes.map((item, index) => {
+      return <Layout
+        key={index}
+        exact={item.exact}
+        path={item.path}
+        Component={item.Component}
+        isPrivate={item.isPrivate}
+      />
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Loading/>
+      <Switch>
+        <LoginTemplate exact path="/userlogin" Component={UserLogin}/>
+        <Route exact path="/" component={SiderBar}/>
+        <Route path="*" component={PageNotFound}/>
+      </Switch>
+    </Router>
   );
 }
 

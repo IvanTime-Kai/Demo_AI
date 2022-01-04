@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'antd/dist/antd.css'
+import 'katex/dist/katex.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Provider} from 'react-redux'
+import store from './redux/sagas/configStore'
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

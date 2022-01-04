@@ -1,0 +1,5 @@
+{
+    "Logic":["Mệnh đề", "Dạng mệnh đề", "Qui tắc suy diễn", "Vị từ, lượng từ", "Tập hợp", "Ánh xạ", "Qui nạp toán học"],
+    "Đại số Boolean": ["Hàm Boole và biểu thức Boole", "Khai triển hàm Boole", "Mạch Logic", "Tối thiểu hóa hàm Boole"],
+    "Quan hệ":["Quan hệ", "Quan hệ tương đương", "Quan hệ thứ tự - Biểu đồ Hasse"]
+}

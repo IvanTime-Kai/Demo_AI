@@ -1,0 +1,26 @@
+.comment{
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    .comment-left{
+        margin-left: 30px;
+        img{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+    }
+    .comment-right{
+        display: grid;
+        margin-left: 30px;
+        span{
+            font-size: 1.2rem;
+            font-size: bold;
+            margin-bottom: 5px;
+        }
+        p{
+            margin: 0;
+            font-size: 1rem;
+        }
+    }
+}
