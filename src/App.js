@@ -6,7 +6,7 @@ import LoginTemplate from "./template/LoginTemplate/LoginTemplate";
 import UserLogin from "./pages/UserLogin/UserLogin";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loading from "./components/Loading/Loading";
-
+import { ClientRoutes } from "./routes";
 
 export const history = createBrowserHistory()
 
@@ -28,8 +28,8 @@ function App() {
     <Router history={history}>
       <Loading/>
       <Switch>
-        <LoginTemplate exact path="/userlogin" Component={UserLogin}/>
-        <Route exact path="/" component={SiderBar}/>
+        {renderRouter(ClientRoutes, LoginTemplate)}
+        <Route exact path="/home" component={SiderBar}/>
         <Route path="*" component={PageNotFound}/>
       </Switch>
     </Router>

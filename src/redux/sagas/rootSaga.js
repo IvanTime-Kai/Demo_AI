@@ -11,6 +11,7 @@ function * rootSaga(){
         ContentSaga.theoDoiGetLessonApi(),
         ContentSaga.theoDoiGetChapterApi(),
         CommentSaga.theoDoiGetCommentApi(),
+        CommentSaga.theoDoiAddCommentApi(),
         UserSaga.theoDoiCreateUserApi(),
         UserSaga.theoDoiLoginUserApi(),
         RelativeSaga.theoDoiGetAllRelativeApi(),

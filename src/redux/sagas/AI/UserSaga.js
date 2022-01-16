@@ -24,7 +24,7 @@ function * loginUserApi(action){
                 showConfirmButton: false,
                 timer: 1500
             })
-            history.push('/')
+            history.push('/home')
         }
     }catch(err){
         console.log(err)

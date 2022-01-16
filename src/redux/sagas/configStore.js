@@ -4,11 +4,15 @@ import rootSaga from "./rootSaga";
 import ContentReducer from "../reducers/ContentReducer";
 import LoadingReducer from "../reducers/LoadingReducer";
 import RelativeReducer from "../reducers/RelativeReducer";
+import UserReducer from "../reducers/UserReducer";
+import CommentReducer from "../reducers/CommentReducer";
 
 const rootReducer = combineReducers({
     ContentReducer,
     LoadingReducer,
-    RelativeReducer
+    RelativeReducer,
+    UserReducer,
+    CommentReducer
 })
 
 const middleWareSaga = createSagaMiddleware()

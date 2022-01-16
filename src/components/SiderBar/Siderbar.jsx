@@ -16,7 +16,8 @@ import ContentSideBar from '../Content/ContentSideBar';
 import RadioButton from '../RadioButton/RadioButton';
 import data from '../../assets/ChapterAndLesson.json'
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_ALL, GET_ALL_RELATIVE, GET_CHAPTER, GET_LESSON } from '../../redux/types/types';
+import { GET_ALL, GET_ALL_RELATIVE, GET_CHAPTER, GET_COMMENT, GET_LESSON, SEARCH } from '../../redux/types/types';
+import { actSearch } from '../../redux/actions/ContentAction';
 
 
 const { Search } = Input;
@@ -57,6 +58,10 @@ export default function SiderBar() {
             type: GET_LESSON,
             data: lesson
         })
+        dispatch({
+            type : GET_COMMENT,
+            data : lesson
+        })
     }, [lesson])
 
     const handleOnChangeSubMenu = ({ key, domEvent }) => {
@@ -71,13 +76,11 @@ export default function SiderBar() {
     // }
     const handleSelectMenuItem = ({ key, keyPath }) => {
         setLesson(key)
-    }
-    // const handleSelectMenuItem = (data) => {
-    //     console.log('data', data);
-    // }
-
-    const onSelect = () => {
-
+        dispatch({
+            type : GET_COMMENT,
+            data : key
+        })
+        
     }
     return (
         <Layout>
@@ -85,33 +88,55 @@ export default function SiderBar() {
                 <div className='bg-filter'></div>
                 <div className='header-layout-content'>
                     <span>TRA CỨU KIẾN THỨC TOÁN RỜI RẠC</span>
-                    <AutoComplete
+                        <AutoComplete
                             className='header-layout-content-input'
                             dropdownMatchSelectWidth={0}
+                            value={value}
                             ref={searchValue}
-                            options={contentChapter?.map((item, index) => {
+                            options={contentAll?.map((item, index) => {
                                 return { label: item.title, index: item.title }
                             })}
-                            onSelect={onSelect}
+                            filterOption={(inputValue, option) => {
+                                return option.label.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                            }}
                             // onSearch = {(value) => {
                             //     if(searchValue.current ){
                             //         clearTimeout(searchValue.current)
                             //     }
                             //     searchValue.current = setTimeout(() => {
-                            //         dispatch({
-                            //             type : GET_LESSON,
-                            //             data : value
-                            //         })
+                            //         // dispatch({
+                            //         //     type : GET_LESSON,
+                            //         //     data : value
+                            //         // })
+                                
+                            //         dispatch(actSearch(value))
+                                    
                             //     }, 300)
                             // }}
                             onChange={(value) => {
                                 setValue(value)
                             }}
+                            onKeyDown={(e) => {
+                                // const { value } = e.target
+                                if(e.key === 'Enter'){
+                                    if(value == ''){
+                                        dispatch({
+                                            type: GET_CHAPTER,
+                                            data: chapter
+                                        })
+                                    }else{
+                                        dispatch(actSearch(value))
+                                    }
+                                }
+                            }}
+                            onSelect={(value, option) => {
+                                console.log('----------heloo')
+                            }}
                         >
                             {/* <Input.Search placeholder="input here" enterButton /> */}
-                    </AutoComplete>
-                    <div class="carousel__scroll">                
-                        <i class="fa fa-chevron-down"></i>
+                        </AutoComplete>
+                    <div className="carousel__scroll">                
+                        <i className="fa fa-chevron-down"></i>
                     </div>
                 </div>
                 
@@ -158,7 +183,6 @@ export default function SiderBar() {
                             size="large"
                             onSearch={onSearch}
                         /> */}
-                        
                         <RadioButton />
                     </Header>
                     <Content>

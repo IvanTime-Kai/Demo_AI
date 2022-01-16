@@ -22,17 +22,17 @@ function * GetLessonApi(action){
     try{
         let {data, status} = yield call(() => contentApi.fetchLesson(action.data))
         if(status === STATUS_CODE.SUCCESS){
-            yield put({
-                type : DISPLAY_LOADING
-            })
-            yield delay(300)
+            // yield put({
+            //     type : DISPLAY_LOADING
+            // })
+            // yield delay(300)
             yield put({
                 type : GET_CHAPTER_API,
                 data : data
             })
-            yield put({
-                type : HIDDEN_LOADING
-            })
+            // yield put({
+            //     type : HIDDEN_LOADING
+            // })
         }
     }catch(err){
         console.log(err.response)
@@ -42,17 +42,17 @@ function * GetChapterApi(action){
     try{
         let {data, status} = yield call(() => contentApi.fetchChapter(action.data))
         if(status === STATUS_CODE.SUCCESS){
-            yield put({
-                type : DISPLAY_LOADING
-            })
-            yield delay(300)
+            // yield put({
+            //     type : DISPLAY_LOADING
+            // })
+            // yield delay(300)
             yield put({
                 type : GET_CHAPTER_API,
                 data : data
             })
-            yield put({
-                type : HIDDEN_LOADING
-            })
+            // yield put({
+            //     type : HIDDEN_LOADING
+            // })
         }
     }catch(err){
         console.log(err.response)

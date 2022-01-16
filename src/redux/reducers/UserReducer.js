@@ -1,5 +1,6 @@
 import {USER_LOGIN} from '../../utils/SettingSystem/SettingSystem'
-import LOGIN_USER from '../types/types'
+import { LOGIN_USER } from '../types/types'
+
 
 
 let user = {}
@@ -13,7 +14,7 @@ const intialState = {
 
 const UserReducer = (state = intialState, action) => {
     switch (action.type) {
-        case LOGIN_USER:
+        case LOGIN_USER :
             return { ...state, userLogin : action.data}
         default:
             return state

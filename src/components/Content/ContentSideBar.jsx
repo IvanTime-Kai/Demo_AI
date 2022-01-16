@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './ContentSideBar.scss'
-import { GET_ALL_RELATIVE, GET_RELATIVE } from '../../redux/types/types'
+import { GET_ALL_RELATIVE, GET_COMMENT, GET_RELATIVE } from '../../redux/types/types'
 import { Drawer} from 'antd';
+import Comment from '../Comment/Comment';
+import OldComment from '../Comment/OldComment'
 
 export default function ContentSideBar({ contentChapter, lesson }) {
 
     const dispatch = useDispatch()
     const { allRelative, relative} = useSelector(state => state.RelativeReducer)
+    const { allComment } = useSelector(state => state.CommentReducer)
     const [visible, setVisible] = useState(false);
     const showDrawer = () => {
         setVisible(true);
@@ -25,7 +28,7 @@ export default function ContentSideBar({ contentChapter, lesson }) {
             type: GET_ALL_RELATIVE,
             data: lesson
         })
-    }, [lesson])
+    }, [lesson, contentChapter])
 
     return (
         <>
@@ -48,12 +51,25 @@ export default function ContentSideBar({ contentChapter, lesson }) {
                                 </div>
                             )
                         })}
+                        {
+                            contentChapter.length == 1 && <div className='content__comment'>
+                            <h2>Nội dung bình luận</h2>
+                            <Comment lessonId={lesson}/>
+                            {allComment.map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <OldComment content={item}/>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        }
                     </div>
                     <div className="col-2 content-right">
                         <h4>Kiến thức liên quan</h4>
                         <ul>
                             {allRelative?.map((item, index) => {
-                                return <li onClick={showDrawer} >
+                                return <li onClick={showDrawer} key={index} >
                                     <span to="/home" key={index}>{item.title}</span>
                                 </li>
                             })}
