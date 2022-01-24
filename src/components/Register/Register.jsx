@@ -20,9 +20,12 @@ function Register(props) {
             <span className="register-title">Password</span>
             <input type = 'password' placeholder="Input password" name = "password" className="form-control" onChange={handleChange}/>
             <ErrorMessage name="password" render={ msg => <div className="text-red-500">*{msg}</div>}/>
-            <span className="register-title">Name</span>
-            <input type="text" className="form-control" placeholder="Input name" name="username" onChange={handleChange} />
+            <span className="register-title">User name</span>
+            <input type="text" className="form-control" placeholder="Input user name" name="username" onChange={handleChange} />
             <ErrorMessage name="username" render={ msg => <div className="text-red-500">*{msg}</div>}/>
+            <span className="register-title">Name</span>
+            <input type="text" className="form-control" placeholder="Input name" name="name" onChange={handleChange} />
+            <ErrorMessage name="name" render={ msg => <div className="text-red-500">*{msg}</div>}/>
             {/* <span className="register-title">Phone Number</span>
             <input type="tel" className="form-control" placeholder="Input phone number" name="phoneNumber" onChange={handleChange} />
             <ErrorMessage name="phoneNumber" render={ msg => <div className="text-red-500">*{msg}</div>}/> */}
@@ -37,6 +40,7 @@ const formRegisterWithFormik = withFormik({
             email : '',
             password : '',
             username : '',
+            name : ''
             // phoneNumber : ''
         }
     },
@@ -51,6 +55,7 @@ const formRegisterWithFormik = withFormik({
             type : CREATE_USER,
             data : values
         })
+        console.log('values', values);
         document.getElementById('register').reset();
     },
     displayName : 'FromRegister'

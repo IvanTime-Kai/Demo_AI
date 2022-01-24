@@ -70,10 +70,6 @@ export default function SiderBar() {
             data: key
         })
     }
-
-    // const handleOnChangeSubMenu = (data) => {
-    //     console.log('data', data);
-    // }
     const handleSelectMenuItem = ({ key, keyPath }) => {
         setLesson(key)
         dispatch({

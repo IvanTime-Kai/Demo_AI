@@ -39,6 +39,7 @@ function * loginUserApi(action){
 function * createUserApi(action){
     try{
         const { status, data} = yield call(() => userApi.fetchCreateUser(action.data))
+        console.log('------------status', status);
         if(status === STATUS_CODE.SUCCESS){
             
         }

@@ -12,7 +12,7 @@ function Login(props) {
     return (
         <form id="sigup" className="signup" onSubmit={handleSubmit}>
                 <h1 >Login</h1>
-                <span className="signup-title">Email</span>
+                <span className="signup-title">User name</span>
                 <input type="text" className="form-control" name="username" onChange={handleChange} />
                 <ErrorMessage name="username" render={ msg => <div className="text-red-500">*{msg}</div>}/>
                 <span className="signup-title">Password</span>
